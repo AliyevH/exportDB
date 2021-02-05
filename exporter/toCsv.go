@@ -10,8 +10,8 @@ import (
 	"sync"
 )
 
-// ExportToExcel exports to excel
-func ExportToExcel(path string, table []map[string]interface{}, tableName string, columnNames []string, wg *sync.WaitGroup) {
+// ExportToCsv exports to csv
+func ExportToCsv(path string, table []map[string]interface{}, tableName string, columnNames []string, wg *sync.WaitGroup) {
 	defer wg.Done()
 
 	// Create csv file
@@ -72,16 +72,16 @@ func ExportToExcel(path string, table []map[string]interface{}, tableName string
 
 	sort.Ints(keys)
 
-	csv_data := [][]string{}
+	csvData := [][]string{}
 
 	for _, id := range keys {
 		d := []string{}
 		d = append(d, strconv.Itoa(id))
 		d = append(d, data[id]...)
-		csv_data = append(csv_data, d)
+		csvData = append(csvData, d)
 	}
 
-	if err := w.WriteAll(csv_data); err != nil {
+	if err := w.WriteAll(csvData); err != nil {
 		log.Fatalln("error writing record to file", err)
 	}
 

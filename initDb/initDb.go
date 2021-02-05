@@ -1,4 +1,4 @@
-package db
+package initdb
 
 import (
 	"github.com/AliyevH/exportDB/configs"
@@ -6,13 +6,14 @@ import (
 	"gorm.io/gorm"
 )
 
+// DB is instance of *gorm.DB
 var DB *gorm.DB
 var err error
 
 // Init Config
 func init() {
 
-	DB, err = gorm.Open(mysql.Open(configs.Config.DSN), &gorm.Config{})
+	DB, err = gorm.Open(mysql.Open(configs.DbConfig.DSN), &gorm.Config{})
 
 	if err != nil {
 		panic(err.Error())

@@ -5,28 +5,29 @@ import (
 	"sync"
 	"time"
 
-	"github.com/AliyevH/exportDB/db"
 	"github.com/AliyevH/exportDB/exporter"
+	"github.com/AliyevH/exportDB/scripts"
+	sqlcommands "github.com/AliyevH/exportDB/sqlCommands"
 	_ "github.com/go-sql-driver/mysql"
 )
 
 func main() {
 
-	tables := db.GetTables()
+	tables := sqlcommands.GetTables()
 	var wg sync.WaitGroup
 	start := time.Now()
+
+	scripts.MakeDirectoryIfNotExists("./database")
 
 	for _, table := range tables {
 		wg.Add(1)
 		// if i == 10 {
 		// 	break
 		// }
-		data := db.SelectAllFromTable(table)
-		columnNames := db.GetColumnNames(table)
-		// fmt.Println(columnNames)
-		// fmt.Println(data)
+		data := sqlcommands.SelectAllFromTable(table)
+		columnNames := sqlcommands.GetColumnNames(table)
 
-		go exporter.ExportToExcel("./database", data, table, columnNames, &wg)
+		go exporter.ExportToCsv("./database", data, table, columnNames, &wg)
 		wg.Wait()
 	}
 
