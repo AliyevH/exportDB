@@ -8,7 +8,7 @@ import (
 	"github.com/gin-gonic/gin"
 
 	"gitlab.com/farqlanma_nishani/dbexport/export"
-	initdb "gitlab.com/farqlanma_nishani/dbexport/initDB"
+	"gitlab.com/farqlanma_nishani/dbexport/initdb"
 
 	"gitlab.com/farqlanma_nishani/dbexport/schemas"
 )

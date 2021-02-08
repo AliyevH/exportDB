@@ -6,11 +6,12 @@ import (
 )
 
 type config struct {
-	DSN   string
-	DB    string
-	Debug bool
-	Host  string
-	Port  string
+	DSN      string
+	DB       string
+	Debug    bool
+	Host     string
+	Port     string
+	DbDriver string
 }
 
 // DbConfig object is used as configuration for all go project
@@ -28,20 +29,30 @@ func (*config) devConfig() {
 
 // ProdConfig is used to configure production environment configurations
 func (*config) prodConfig() {
-	DbConfig.DB = os.Getenv("DB_DRIVER")
+	DbDriver := os.Getenv("DB_DRIVER")
 	DbUser := os.Getenv("DB_USER")
 	DbPass := os.Getenv("DB_PASS")
-	DbHost := os.Getenv("DB_HOST")
+	// DbHost := os.Getenv("DB_HOST")
 	DbPort := os.Getenv("DB_PORT")
 	DbName := os.Getenv("DB_NAME")
+	DbConfig.Host = "localhost"
+	DbConfig.Port = "8000"
 
-	DbConfig.DSN = fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
+	// DbConfig.DSN = fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
+
+	// 	DbUser,
+	// 	DbPass,
+	// 	DbHost,
+	// 	DbPort,
+	// 	DbName,
+	// )
+	DbConfig.DSN = fmt.Sprintf("user=%s password=%s dbname=%s port=%s sslmode=disable",
 		DbUser,
 		DbPass,
-		DbHost,
-		DbPort,
 		DbName,
+		DbPort,
 	)
+	DbConfig.DbDriver = DbDriver
 	DbConfig.Debug = false
 }
 

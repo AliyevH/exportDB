@@ -1,6 +1,6 @@
 package sqlcommands
 
-import initdb "gitlab.com/farqlanma_nishani/dbexport/initDB"
+import "gitlab.com/farqlanma_nishani/dbexport/initdb"
 
 // GetTables function returns tables list
 func GetTables() []string {

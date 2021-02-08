@@ -3,7 +3,7 @@ package sqlcommands
 import (
 	"fmt"
 
-	initdb "gitlab.com/farqlanma_nishani/dbexport/initDB"
+	"gitlab.com/farqlanma_nishani/dbexport/initdb"
 )
 
 // SelectAllFromTable select * from
