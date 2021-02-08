@@ -1,12 +1,10 @@
 package sqlcommands
 
-import initdb "github.com/AliyevH/exportDB/initDb"
+import initdb "gitlab.com/farqlanma_nishani/dbexport/initDB"
 
 // GetTables function returns tables list
 func GetTables() []string {
-	db := initdb.DB
-
 	var tableName []string
-	db.Raw("show tables").Scan(&tableName)
+	initdb.DB.Raw("show tables").Scan(&tableName)
 	return tableName
 }

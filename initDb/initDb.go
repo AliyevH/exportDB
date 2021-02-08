@@ -1,21 +1,21 @@
 package initdb
 
 import (
-	"github.com/AliyevH/exportDB/configs"
+	"log"
+
+	"gitlab.com/farqlanma_nishani/dbexport/configs"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
 
 // DB is instance of *gorm.DB
 var DB *gorm.DB
+var err error
 
-// Init Config
 func init() {
-
-	db, err := gorm.Open(mysql.Open(configs.DbConfig.DSN), &gorm.Config{})
+	DB, err = gorm.Open(mysql.Open(configs.DbConfig.DSN), &gorm.Config{})
 
 	if err != nil {
-		panic(err.Error())
+		log.Println("err: ", err)
 	}
-	DB = db
 }
