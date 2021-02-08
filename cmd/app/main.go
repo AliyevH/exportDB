@@ -1,9 +1,9 @@
 package main
 
 import (
+	"github.com/AliyevH/exportDB/configs"
+	"github.com/AliyevH/exportDB/routers"
 	"github.com/gin-gonic/gin"
-	"gitlab.com/farqlanma_nishani/dbexport/configs"
-	"gitlab.com/farqlanma_nishani/dbexport/routers"
 )
 
 func main() {

@@ -7,10 +7,9 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"gitlab.com/farqlanma_nishani/dbexport/export"
-	"gitlab.com/farqlanma_nishani/dbexport/initdb"
-
-	"gitlab.com/farqlanma_nishani/dbexport/schemas"
+	"github.com/AliyevH/exportDB/export"
+	"github.com/AliyevH/exportDB/initdb"
+	"github.com/AliyevH/exportDB/schemas"
 )
 
 // ExportToExcel function to export

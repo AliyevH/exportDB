@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"github.com/360EntSecGroup-Skylar/excelize"
-	sqlcommands "gitlab.com/farqlanma_nishani/dbexport/sqlCommands"
+	sqlcommands "github.com/AliyevH/exportDB/sqlCommands"
 )
 
 // ToExcel Export to Excel

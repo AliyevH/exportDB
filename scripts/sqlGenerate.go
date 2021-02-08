@@ -3,7 +3,7 @@ package scripts
 import (
 	"fmt"
 
-	"gitlab.com/farqlanma_nishani/dbexport/schemas"
+	"github.com/AliyevH/exportDB/schemas"
 )
 
 // GenerateSQL to generate query
