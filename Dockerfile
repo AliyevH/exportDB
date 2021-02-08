@@ -1,6 +1,10 @@
 FROM golang:1.15
 
-WORKDIR /app
+WORKDIR /go/src/app
 COPY . .
 
-CMD ["go", "run", "cmd/app/main.go"]
+RUN go get -d -v ./...
+RUN go install -v ./...
+
+EXPOSE 8000
+CMD ["bash", "start.sh"]

@@ -8,7 +8,7 @@ import (
 
 func main() {
 	r := gin.Default()
-	r.POST("/exportCsv", routers.ExportToExcel)
+	r.POST("/exportExcel", routers.ExportToExcel)
 
 	r.Run(configs.DbConfig.Host + ":" + configs.DbConfig.Port)
 

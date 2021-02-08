@@ -29,22 +29,34 @@ func (*config) devConfig() {
 func (*config) prodConfig() {
 	DbDriver := os.Getenv("DB_DRIVER")
 	DbUser := os.Getenv("DB_USER")
-	DbPass := os.Getenv("DB_PASS")
+	DbPassword := os.Getenv("DB_PASS")
 	DbHost := os.Getenv("DB_HOST")
 	DbPort := os.Getenv("DB_PORT")
 	DbName := os.Getenv("DB_NAME")
-	DbConfig.Host = "localhost"
+	DbConfig.Host = "0.0.0.0"
 	DbConfig.Port = "8000"
 
-	DbConfig.DSN = fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=disable",
-		DbHost,
-		DbUser,
-		DbPass,
-		DbName,
-		DbPort,
-	)
+	if DbDriver == "postgres" {
+
+		DbConfig.DSN = fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=disable",
+			DbHost,
+			DbUser,
+			DbPassword,
+			DbName,
+			DbPort,
+		)
+	} else if DbDriver == "mysql" {
+		DbConfig.DSN = fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
+			DbUser,
+			DbPassword,
+			DbHost,
+			DbPort,
+			DbName,
+		)
+	}
 	DbConfig.DbDriver = DbDriver
 	DbConfig.Debug = false
+
 }
 
 func init() {
