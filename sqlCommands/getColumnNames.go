@@ -24,7 +24,7 @@ func getColumnsPG(table string) []string {
 	columns := []map[string]interface{}{}
 	columnNames := []string{}
 
-	sqlCommand := fmt.Sprintf("SELECT column_name FROM information_schema.columns WHERE table_name='%s'", "pipeline_steps")
+	sqlCommand := fmt.Sprintf("SELECT column_name FROM information_schema.columns WHERE table_name='%s'", table)
 
 	initdb.DB.Raw(sqlCommand).Scan(&columns)
 

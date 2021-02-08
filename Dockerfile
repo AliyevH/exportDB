@@ -1,9 +1,6 @@
-FROM golang:1.14
+FROM golang:1.15
 
 WORKDIR /go/src/app
 COPY . .
 
-RUN go get -d -v ./...
-RUN go install -v ./...
-
-CMD ["go run cmd/app/main.go"]
+CMD ["go", "run", "cmd/app/main.go"]
